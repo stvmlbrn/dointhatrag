@@ -1,0 +1,35 @@
+doctype html(lang='en')
+head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+
+    title ACPS Hazmats Tracker
+
+    link(href='/libs/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
+    //link(href='/assets/libs/metisMenu/dist/metisMenu.min.css', rel='stylesheet')
+    //link(href='/assets/dist/css/sb-admin-2.css', rel='stylesheet')
+    link(href='/libs/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+
+    script(src='/libs/jquery/dist/jquery.min.js')
+    script(src='/libs/bootstrap/dist/js/bootstrap.min.js')
+    //script(src='/assets/libs/metisMenu/dist/metisMenu.min.js')
+    //script(src='/assets/dist/js/sb-admin-2.js')
+
+  body
+    .container
+      .row
+        .col-md-4.col-md-offset-4
+          .login-panel.panel.panel-default
+            .panel-heading
+              h3.panel-title Please Sign In
+            .panel-body
+              form(role='form', action='/index.cfm?action=security.login', method='post')
+                fieldset
+                  .form-group
+                    input.form-control(placeholder='Username', name='username', autofocus='')
+                  .form-group
+                    input.form-control(placeholder='Password', name='password', type='password', value='')
+                  button.btn.btn-lg.btn-success.btn-block(type='submit') Login
