@@ -1,10 +1,9 @@
 var fs = require('fs');
 var path = require('path');
 var Sequelize = require('sequelize');
-var config = require('../../config/config');
 var db = {};
-var sequelize = new Sequelize(config.db.database, config.db.user, config.db.password, {
-  host: config.db.host, logging: config.db.logging
+var sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USER, process.env.DB_PASS, {
+  host: process.env.DB_HOST, logging: console.log
 });
 
 fs.readdirSync(__dirname).filter(function (file) {

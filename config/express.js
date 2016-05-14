@@ -1,3 +1,6 @@
+require('dotenv').config();
+
+var path = require('path');
 var express = require('express');
 var glob = require('glob');
 var favicon = require('serve-favicon');
@@ -10,6 +13,7 @@ var passport = require('passport');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var helmet = require('helmet');
+var appRoot = require('app-root-path');
 
 module.exports = function(app, config) {
   var env = process.env.NODE_ENV || 'development';
@@ -21,7 +25,7 @@ module.exports = function(app, config) {
     app.locals.pretty = true;
   }
 
-  app.set('views', config.root + '/app/views');
+  app.set('views', appRoot + '/app/views');
   app.set('view engine', 'jade');
 
   // app.use(favicon(config.root + '/public/img/favicon.ico'));
@@ -32,23 +36,24 @@ module.exports = function(app, config) {
   }));
   app.use(cookieParser());
   app.use(compress());
-  app.use(express.static(config.root + '/public'));
+  app.use(express.static(appRoot + '/public'));
 
   app.use(helmet());
   app.use(methodOverride());
   app.use(session({
-    store: new RedisStore({host: config.redis.host, port: config.redis.port}),
-    secret: config.session_secret,
+    store: new RedisStore({host: process.env.REDIS_HOST, port: process.env.REDIS_PORT}),
+    secret: process.env.SESSION_SECRET,
     resave: true,
-    saveUnitialized: false
+    saveUninitialized: false
   }));
   app.use(passport.initialize());
   app.use(passport.session());
 
-  require(config.root + '/config/passport')(passport);
+  //un-comment the following line if using passport
+  //require(appRoot + '/config/passport')(passport);
 
-  // make sure the user is logged in before accessing anything
-  app.use(function(req, res, next) {
+  // un-comment the following blocks if user login is required
+  /* app.use(function(req, res, next) {
     if (!req.isAuthenticated() && req.url !== '/login') {
       res.redirect('/login');
     } else {
@@ -62,8 +67,9 @@ module.exports = function(app, config) {
       failureRedirect: '/login',
       failureFlash: true
     }));
+  */
 
-  app.use(require(config.root + '/app/controllers'));
+  app.use(require(appRoot + '/app/controllers'));
 
   app.use(function (req, res, next) {
     var err = new Error('Not Found');

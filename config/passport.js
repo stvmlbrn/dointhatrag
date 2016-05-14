@@ -1,25 +1,27 @@
+require('dotenv').config();
+
+var appRoot = require('app-root-path');
 var WindowsStrategy = require('passport-windowsauth');
-//var db = require('../app/models');
-var config = require('./config');
+
+var ldapConfig = {
+  url: process.env.LDAP_URL,
+  base: process.env.LDAP_BASE,
+  bindDN: process.env.LDAP_BIND_DN,
+  bindCredentials: process.env.LDAP_BIND_CREDENTIALS
+};
 
 module.exports = function(passport) {
 
   passport.serializeUser(function(user, done) {
-    done(null, user._json.extensionAttribute1); //use employee number to serialize req.user session
+    done(null, user._json.extensionAttribute1);
   });
 
   passport.deserializeUser(function(id, done) {
-    /* db.Staff
-      .find({
-        where: {employeeNumber: id}
-      })
-      .then(function(user) {
-        done(null, user);
-      }); */
+    //define the query here to deserialize the user
   });
 
   passport.use(new WindowsStrategy({
-    ldap: config.ldap,
+    ldap: ldapConfig,
     integrated: false
   }, function(profile, done) {
     done(null, profile);
