@@ -15,7 +15,7 @@ var RedisStore = require('connect-redis')(session);
 var helmet = require('helmet');
 var appRoot = require('app-root-path');
 
-module.exports = function(app, config) {
+module.exports = function(app) {
   var env = process.env.NODE_ENV || 'development';
   app.locals.ENV = env;
   app.locals.ENV_DEVELOPMENT = env == 'development';
