@@ -2,6 +2,7 @@ require('dotenv').config();
 
 var path = require('path');
 var express = require('express');
+var expressValidator = require('express-validator');
 var glob = require('glob');
 var favicon = require('serve-favicon');
 var morgan = require('morgan');
@@ -35,6 +36,7 @@ module.exports = function(app) {
   app.use(bodyParser.urlencoded({
     extended: true
   }));
+  app.use(expressValidator());
   app.use(cookieParser());
   app.use(compress());
   app.use(express.static(appRoot + '/public'));
