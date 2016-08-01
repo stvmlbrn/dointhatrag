@@ -4,7 +4,7 @@ var path = require('path');
 var express = require('express');
 var glob = require('glob');
 var favicon = require('serve-favicon');
-var logger = require('morgan');
+var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compress = require('compression');
@@ -14,6 +14,7 @@ var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var helmet = require('helmet');
 var appRoot = require('app-root-path');
+var logger = require(appRoot + '/app/utils/logger');
 
 module.exports = function(app) {
   var env = process.env.NODE_ENV || 'development';
@@ -29,7 +30,7 @@ module.exports = function(app) {
   app.set('view engine', 'jade');
 
   // app.use(favicon(config.root + '/public/img/favicon.ico'));
-  app.use(logger('dev'));
+  app.use(logger('combined', {'stream': logger.stream}));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({
     extended: true
