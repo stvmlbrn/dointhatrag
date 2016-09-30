@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 var path = require('path');
 var express = require('express');
 var expressValidator = require('express-validator');
@@ -31,7 +29,7 @@ module.exports = function(app) {
   app.set('view engine', 'jade');
 
   // app.use(favicon(config.root + '/public/img/favicon.ico'));
-  app.use(logger('combined', {'stream': logger.stream}));
+  app.use(morgan('combined', {'stream': logger.stream}));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({
     extended: true
@@ -39,7 +37,7 @@ module.exports = function(app) {
   app.use(expressValidator());
   app.use(cookieParser());
   app.use(compress());
-  app.use(express.static(appRoot + '/public'));
+  app.use(express.static(appRoot + '/app/public'));
 
   app.use(helmet());
   app.use(methodOverride());

@@ -1,11 +1,12 @@
 require('dotenv').config();
 
+var appRoot = require('app-root-path');
 var express = require('express');
-var db = require('./app/db');
+var db = require(appRoot + '/app/db');
 
 var app = express();
 
-require('./config/express')(app);
+require(appRoot + '/app/config/express')(app);
 
 db.sequelize
   .sync()

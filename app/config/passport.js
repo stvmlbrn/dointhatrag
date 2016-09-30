@@ -1,4 +1,4 @@
-require('dotenv').config();
+'use strict';
 
 var appRoot = require('app-root-path');
 var WindowsStrategy = require('passport-windowsauth');
