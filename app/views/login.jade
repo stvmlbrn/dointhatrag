@@ -6,17 +6,10 @@ head
     meta(name='description', content='')
     meta(name='author', content='')
 
-    title ACPS Hazmats Tracker
+    title Node/Express Boilerplate
 
-    link(href='/libs/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')
-    //link(href='/assets/libs/metisMenu/dist/metisMenu.min.css', rel='stylesheet')
-    //link(href='/assets/dist/css/sb-admin-2.css', rel='stylesheet')
-    link(href='/libs/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
-
-    script(src='/libs/jquery/dist/jquery.min.js')
-    script(src='/libs/bootstrap/dist/js/bootstrap.min.js')
-    //script(src='/assets/libs/metisMenu/dist/metisMenu.min.js')
-    //script(src='/assets/dist/js/sb-admin-2.js')
+    link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u", crossorigin="anonymous")
+    link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css", rel="stylesheet", integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1", crossorigin="anonymous")
 
   body
     .container
@@ -26,7 +19,7 @@ head
             .panel-heading
               h3.panel-title Please Sign In
             .panel-body
-              form(role='form', action='/index.cfm?action=security.login', method='post')
+              form(role='form', action='/login', method='post')
                 fieldset
                   .form-group
                     input.form-control(placeholder='Username', name='username', autofocus='')
