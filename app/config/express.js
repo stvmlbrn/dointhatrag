@@ -17,9 +17,7 @@ var logger = require(appRoot + '/app/utils/logger');
 
 module.exports = function(app) {
   var env = process.env.NODE_ENV || 'development';
-  app.locals.ENV = env;
-  app.locals.ENV_DEVELOPMENT = env == 'development';
-  app.locals.assetsFolder = env === 'development' ? 'src' : 'dist';
+  app.locals.env = env;
 
   if (env === 'development') {
     app.locals.pretty = true;
@@ -90,12 +88,14 @@ module.exports = function(app) {
   }
 
   app.use(function (err, req, res, next) {
+    logger.error(err.status || 500 + ' ' + util.inspect(err));
+
     res.status(err.status || 500);
-      res.render('error', {
-        message: err.message,
-        error: {},
-        title: 'error'
-      });
+    res.render('error', {
+      message: err.message,
+      error: env === 'development' ? err : {},
+      title: 'error'
+    });
   });
 
 };
