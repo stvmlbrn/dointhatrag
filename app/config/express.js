@@ -8,7 +8,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compress = require('compression');
 var methodOverride = require('method-override');
-var passport = require('passport');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var helmet = require('helmet');
@@ -25,10 +24,10 @@ module.exports = function(app) {
   }
 
   app.set('views', appRoot + '/app/views');
-  app.set('view engine', 'jade');
+  app.set('view engine', 'pug');
   app.set('trust proxy', 'loopback');
 
-  // app.use(favicon(config.root + '/public/img/favicon.ico'));
+  app.use(favicon(appRoot + '/app/public/stealie-small.png'));
   app.use(morgan('combined', {'stream': logger.stream}));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({
@@ -41,34 +40,6 @@ module.exports = function(app) {
 
   app.use(helmet());
   app.use(methodOverride());
-  app.use(session({
-    store: new RedisStore({host: process.env.REDIS_HOST, port: process.env.REDIS_PORT}),
-    secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: false
-  }));
-  app.use(passport.initialize());
-  app.use(passport.session());
-
-  //un-comment the following line if using passport
-  //require(appRoot + '/config/passport')(passport);
-
-  // un-comment the following blocks if user login is required
-  /* app.use(function(req, res, next) {
-    if (!req.isAuthenticated() && req.url !== '/login') {
-      res.redirect('/login');
-    } else {
-      next();
-    }
-  });
-
-  app.route('/login')
-    .post(passport.authenticate('WindowsAuthentication', {
-      successRedirect: '/',
-      failureRedirect: '/login',
-      failureFlash: true
-    }));
-  */
 
   app.use(require(appRoot + '/app/controllers'));
 

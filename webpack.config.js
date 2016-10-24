@@ -9,7 +9,7 @@ var PATHS = {
 
 module.exports = {
   entry: {
-
+    app: path.join(PATHS.src, 'app.js')
   },
   output: {
     path: PATHS.build,
@@ -18,7 +18,7 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
+        test: /\.js?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
@@ -28,6 +28,14 @@ module.exports = {
       {
         test: /\.(jpg|png)$/,
         loader: 'url-loader'
+      },
+      {
+        test: /\.scss$/,
+        loaders: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
       },
       {
         test: /\.css/,
@@ -45,6 +53,9 @@ module.exports = {
   plugins: [
     new webpack.ProvidePlugin({
       'Promise': 'es6-promise'
+    }),
+    new webpack.ProvidePlugin({
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     }),
     new WebpackNotifierPlugin(),
     // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`

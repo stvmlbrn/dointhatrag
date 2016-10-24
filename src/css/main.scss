@@ -1,0 +1,35 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background: black url('/bg-stealie.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+a:active {
+  color: white;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
+  background-color: black;
+}
+
+.footer-text {
+  margin: 5px 0;
+}
+
+.footer-text a {
+  color: white;
+}
