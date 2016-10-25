@@ -21,15 +21,14 @@ a:active {
   position: absolute;
   bottom: 0;
   width: 100%;
-  /* Set the fixed height of the footer here */
   height: 30px;
   background-color: black;
+  a {
+    color: white;
+  }
 }
 
 .footer-text {
   margin: 5px 0;
 }
 
-.footer-text a {
-  color: white;
-}
