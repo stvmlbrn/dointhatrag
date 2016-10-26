@@ -1,8 +1,7 @@
 import React from 'react';
 
-import Footer from './footer';
-
 import '../../css/bootstrap.scss';
+import '../../css/font-awesome/scss/font-awesome.scss';
 import '../../css/main.scss';
 
 export default class Layout extends React.Component {
@@ -20,7 +19,6 @@ export default class Layout extends React.Component {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     );
   }

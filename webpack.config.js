@@ -4,7 +4,7 @@ var WebpackNotifierPlugin = require('webpack-notifier');
 
 var PATHS = {
   src: path.join(__dirname, 'src/js/'),
-  build: path.join(__dirname, 'app/public/build/')
+  build: path.join(__dirname, 'app/public/build')
 };
 
 module.exports = {
@@ -13,7 +13,8 @@ module.exports = {
   },
   output: {
     path: PATHS.build,
-    filename: '[name].js'
+    filename: '[name].js',
+    publicPath: 'build/'
   },
   module: {
     loaders: [
