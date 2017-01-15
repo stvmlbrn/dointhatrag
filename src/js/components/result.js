@@ -9,7 +9,7 @@ export default class Result extends React.Component {
   audioLink = (link) => {
     if (link) {
       return (
-        <a href={link} target="_blank"><i className="fa fa-headphones fa-2x"></i></a>
+        <a href={link} target="_blank"><i className="fa fa-soundcloud fa-2x"></i></a>
       );
     } else {
       return ('');
