@@ -3,8 +3,8 @@ var webpack = require('webpack');
 var WebpackNotifierPlugin = require('webpack-notifier');
 
 var PATHS = {
-  src: path.join(__dirname, 'src/js/'),
-  build: path.join(__dirname, 'app/public/build')
+  src: path.join(__dirname, 'client/src/js/'),
+  build: path.join(__dirname, 'client/public/build')
 };
 
 module.exports = {

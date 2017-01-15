@@ -1,5 +1,5 @@
 var appRoot = require('app-root-path');
-var db = require(appRoot + '/app/db');
+var db = require(appRoot + '/server/config/db');
 
 exports.search = function(criteria) {
   var sql = `select v.name as venueName, v.location, s.title, c.date, b.name as bandName, sl.id,

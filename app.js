@@ -2,11 +2,12 @@ require('dotenv').config();
 
 var appRoot = require('app-root-path');
 var express = require('express');
+var logger = require(appRoot + '/server/config/logger');
 
 var app = express();
 
-require(appRoot + '/app/config/express')(app);
+require(appRoot + '/server/config/express')(app);
 
 app.listen(process.env.PORT, function() {
-  console.log('Express server listening on port ' + process.env.PORT);
+  logger.info('Express server listening on port ' + process.env.PORT);
 });

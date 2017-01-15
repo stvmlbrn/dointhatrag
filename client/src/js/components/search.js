@@ -16,7 +16,7 @@ export default class Search extends React.Component {
               value={criteria} onChange={onChange} autoFocus placeholder="Song title or venue..."/>
           </div>
           <button className="btn btn-default">
-            <img src='/stealie-small.png' height="40"/> Search
+            <img src={require('../../img/stealie-small.png')} height="40"/> Search
           </button>
         </form>
       </div>
